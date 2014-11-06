@@ -32,6 +32,7 @@ User = (function(){
 	};
 
 	User.prototype.infect = function(){
+		//modifying this for limited infection
 		this.infected = true;
 	}
 
@@ -50,10 +51,8 @@ User = (function(){
 			for (c in coaches){
 				coach = coaches[c];
 				results.push(coach.totalInfection(infectID));
-			}
-			return results;
+			}	
 		}
+		return results;
 	};
-
-	
 });
