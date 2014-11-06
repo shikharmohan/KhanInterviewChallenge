@@ -5,4 +5,6 @@ This was such a fun project to work on! I have completed both functions total in
 
 I would have liked to spend more time on the heuristic for limited_infection - i'm currently finding the minimum uninfected nodes in the space of a given node, however, it doesn't work as well as I would have liked. I primarily used DFS for graph traversal and passing in an infection ID to keep track of nodes visited in a given traversal.
 
+To run the project, just download the repo and open up index.html -that's it! 
+
 Thanks!
