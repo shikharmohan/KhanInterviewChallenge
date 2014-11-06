@@ -182,3 +182,38 @@
 		}
 		return count;
 	};
+
+	User.prototype.beginLimitedInfection = function(limit) {
+		infectionID = Math.floor(Math.random() * 10000);
+		//get count of infections on first limit
+		var count = this.limitedInfection(infectionID);
+		limit -= count;
+
+		//need to find coach that gives us exactly limit infections
+		while(limit > 0){
+			coach = findExactCoach(this.Component.coaches);
+			if (coach !== null){
+				ct = coach.limitedInfection(infectionID);
+				count += ct;
+				limit -= ct;
+			}
+			else{
+				break;
+			}
+		}
+		return count;
+	};
+
+	findExactCoach = function(coaches){
+		currCoach = null;
+		currCoachNumUninfected = -1;
+		for(var i = 0; i < coaches.length; i++){
+			coach = coaches[i];
+			numUninfected = coaches.uninfectedCount();
+			if((!coach.infected ||  numUninfected !== 0) && numUninfected >currCoachNumUninfected){
+				currCoachNumInfected = numUninfected;
+				currCoach = coach;
+			}
+		}
+		return currCoach;
+	}

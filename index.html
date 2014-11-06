@@ -20,6 +20,11 @@
     <script type="text/javascript" src="./js/users.js"></script>
     <script type="text/javascript" src="./js/graph.js"></script>
     <style>
+    text {
+      font: 10px sans-serif;
+      pointer-events: none;
+      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    }
         .panel-heading{
             padding: 10px 15px;
             border-bottom: 1px solid transparent;
@@ -36,6 +41,16 @@
             border: 3px solid;
             border-radius: 4px;
             box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+
+        .node {
+          stroke: #fff;
+          stroke-width: 1.5px;
+        }
+
+        .link {
+          stroke: #999;
+          stroke-opacity: .6;
         }
     </style>
   </head>
