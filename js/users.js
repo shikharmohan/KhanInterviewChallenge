@@ -32,14 +32,14 @@
 	};
 
 	Component.prototype.getUsers = function(list){
-		users = [];
+		result = [];
 		for(var i = 0; i < list.length; i++){
-			user = this.getUser(list[i])
+			u = this.getUser(list[i])
 			if(user !== null){
-				users.push(user);
+				result.push(u);
 			}
 		}
-		return users;
+		return result;
 	};
 
 	Component.prototype.addCoach = function(){
@@ -59,7 +59,7 @@
 		return count;
 	};
 
-
+//User model
 
 	function User(id){
 		this.id = id;
@@ -107,15 +107,13 @@
 			this.infectionID = infectID;
 			this.infect();
 			count++;
-			std = this.students;
-			for (var i = 0; i < std.length; i++){
-				student = std[i];
+			for (var i = 0; i < this.students.length; i++){
+				student = this.students[i];
 				//recurse on students!
 				count += student.totalInfection(infectID);
 			}
-			coaches = this.coaches
-			for (var i = 0; i < coaches.length; i++){
-				coach = coaches[i];
+			for (var i = 0; i < this.coaches.length; i++){
+				coach = this.coaches[i];
 				//recurse! 
 				count += coach.totalInfection(infectID);
 			}	
@@ -132,9 +130,8 @@
 				count++;
 			}
 			//infect students
-			std = this.students;
-			for(var i = 0; i < std.length; i++){
-				student = std[i];
+			for(var i = 0; i < this.students.length; i++){
+				student = this.students[i];
 				count += student.limitedInfection(infectID);
 			}
 		}

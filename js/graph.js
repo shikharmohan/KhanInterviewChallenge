@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	usersGraph = createUserGraph(30);
+	usersGraph = createUserGraph(7);
 	data = createVizStruct(usersGraph.users);
 	makeViz(data);
 
@@ -45,12 +45,12 @@ function createUserGraph(size){
 	}
 	graph = new Component();
 	graph.createUsers(ids);
-	c1 = graph.getUser(1);
-	c2 = graph.getUser(2);
-	c3 = graph.getUser(3);
-	c1.addStudents(graph.getUsers([4, 5, 6]));
-	c2.addStudents(graph.getUsers([7, 8, 9]));
-	c3.addStudents(graph.getUsers([10, 11, 12]));
+	testUsers = graph.getUsers(ids);
+	testUsers[0].addStudent(testUsers[1]);
+	testUsers[0].addStudent(testUsers[2]);
+	testUsers[0].addStudent(testUsers[3]);
+	testUsers[4].addStudent(testUsers[5]);
+	testUsers[4].addStudent(testUsers[6]);
 	return graph
 }
 
@@ -119,7 +119,7 @@ function makeViz(obj){
       .call(force.drag);
 
 
-      node.append("text")
+      node.append("title")
           .text(function(d) { return d.num; });
 
       force.on("tick", function() {
