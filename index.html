@@ -7,20 +7,18 @@
 
     <title>Khan Academy Project - Infection</title>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/jquery-2.1.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="./assets/bootstrap.min.js"></script>   
+    <link rel="stylesheet" href="./assets/bootstrap-theme.min.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
 
     <!--d3.js -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
-    <script type="text/javascript" src="/infection.js"></script>
-    <script type="text/javascript" src="/graph.js"></script>
+    <script type="text/javascript" src="./js/users.js"></script>
+    <script type="text/javascript" src="./js/graph.js"></script>
     <style>
         .panel-heading{
             padding: 10px 15px;
@@ -45,22 +43,24 @@
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <h2>Khan Academy Project Interview by Shikhar Mohan - Enjoy!</h2>
     </nav>
+
+
     <div class="col-md-3">
         <form role="form" id="totalInfectionForm">
           <div class="form-group">
             <label>Total Infection</label>
-            <input type="text" class="form-control" id="startUser" placeholder="Enter start user ID" required>
+            <input type="text" class="form-control" id="startUser" placeholder="Enter start user ID" >
           </div>
-          <button id="totalInfectionSubmit" type="submit" class="btn btn-default col-md-3">Submit</button>
+          <button id="totalInfectionSubmit" class="btn btn-default col-md-3">Submit</button>
     </div>
     <div class="col-md-3">
         <form role="form" id="limitedInfectionForm">
           <div class="form-group">
             <label>Limited Infection</label>
-            <input type="text" class="form-control" id="startUserLimit" placeholder="Enter start user ID" required>
-            <input type="text" class="form-control" id="limit" placeholder="Enter limit" required>
+            <input type="text" class="form-control" id="startUserLimit" placeholder="Enter start user ID">
+            <input type="text" class="form-control" id="limit" placeholder="Enter limit">
           </div>
-          <button id="limitedInfectionSubmit" type="submit" class="btn btn-default col-md-3">Submit</button>
+          <button id="limitedInfectionSubmit" class="btn btn-default col-md-3">Submit</button>
     </div>
     <div class="col-md-9">
         <div class="panel">
@@ -68,5 +68,6 @@
             <div id="visualization"></div>
         </div>
     </div>
+
   </body>
 

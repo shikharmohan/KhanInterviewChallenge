@@ -1,8 +1,6 @@
 /*Creating a connected component object, basically a database. 
 * Makes creating d3 graph easier
 */
-var Component = (function(){
-
 	function Component() {
 		this.users = [];
 		this.coaches = []; //creators of components, keep track
@@ -32,7 +30,7 @@ var Component = (function(){
 		}
 		return found_user;
 	};
-	
+
 	Component.prototype.getUsers = function(list){
 		users = [];
 		for(var i = 0; i < list.length; i++){
@@ -62,18 +60,7 @@ var Component = (function(){
 	};
 
 
-	return Component;
 
-});
-
-
-
-
-
-
-
-
-var User = (function(){
 	function User(id){
 		this.id = id;
 		this.coaches = [];
@@ -85,7 +72,7 @@ var User = (function(){
 
 	User.prototype.addStudent = function(student) {
 		//student not found
-		if((this.coaches.indexOf(student))){
+		if((this.students.indexOf(student)) === -1){
 			this.students.push(student);
 			student.addCoach(this);
 		}	
@@ -114,27 +101,31 @@ var User = (function(){
 
 	//this function takes in an infection ID to make sure we aren't infecting the same nodes twice
 	User.prototype.totalInfection = function(infectID) {
-		var results = [];
+		var count = 0;
+		//base case -- InfectionID keeps from inf loop
 		if(this.infectionID !== infectID){
 			this.infectionID = infectID;
 			this.infect();
+			count++;
 			std = this.students;
-			for (s in std){
-				student = std[s];
-				student.totalInfection(infectID);
+			for (var i = 0; i < std.length; i++){
+				student = std[i];
+				//recurse on students!
+				count += student.totalInfection(infectID);
 			}
 			coaches = this.coaches
-			for (c in coaches){
-				coach = coaches[c];
-				results.push(coach.totalInfection(infectID));
+			for (var i = 0; i < coaches.length; i++){
+				coach = coaches[i];
+				//recurse! 
+				count += coach.totalInfection(infectID);
 			}	
 		}
-		return results;
+		return count;
 	};
 	User.prototype.limitedInfection = function(infectID) {
 		//infect current user & students if any
 		var count = 0;
-		if (if this.infectionID !== infectID){
+		if (this.infectionID !== infectID){
 			this.infectionID = infectID;
 			if(!this.infected){
 				this.infect();
@@ -150,5 +141,44 @@ var User = (function(){
 		return count;
 	};
 
-	return User;
-});
+	User.prototype.uninfectedCount = function() {
+		// return number of infected students
+		// total students - infected students
+		var infectIDTotal = Math.ceil(Math.random() * 10000);
+		var total = totalStudentsHelper(infectID);
+		var infectIDInf = Math.ceil(Math.random() * 10000);
+		var infected = totalInfectedHelper(infectIDInf);
+
+		return total-infected;
+	};
+
+	User.prototype.totalStudentsHelper = function(infectID) {
+		var count = 0;
+		if(this.infectionID !== infectID){
+			this.infectionID = infectID;
+			count++;
+			students = this.students;
+			for(var i = 0; i < students.length; i++){
+				student = students[i];
+				//recurse! 
+				count += student.totalStudentsHelper(infectID);
+			}
+		}
+		return count;
+	};
+
+	User.prototype.totalInfectedHelper = function(infectID) {
+		var count = 0
+		if(this.infectionID !== infectID){
+			this.infectionID = infectID;
+			if(this.infected){
+				count++;
+			}
+			students = this.students;
+			for(var i = 0; i < students.length; i++){
+				student = students[i];
+				count += student.totalInfectedHelper(infectID);
+			}
+		}
+		return count;
+	};
